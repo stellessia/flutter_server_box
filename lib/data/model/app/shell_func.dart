@@ -143,7 +143,7 @@ fi''';
   static String allScript(Map<String, String>? customCmds) {
     final sb = StringBuffer();
     sb.write('''
-#!/bin/sh
+#!/usr/bin/env sh
 # Script for ServerBox app v1.0.${BuildData.build}
 # DO NOT delete this file while app is running
 
@@ -153,8 +153,8 @@ export LANG=en_US.UTF-8
 macSign=\$(uname -a 2>&1 | grep "Darwin")
 bsdSign=\$(uname -a 2>&1 | grep "BSD")
 
-# Link /bin/sh to busybox?
-isBusybox=\$(ls -l /bin/sh | grep "busybox")
+# Check if the shell is linked to Busybox
+isBusybox=\$(ls -l \$0 | grep "busybox")
 
 userId=\$(id -u)
 
